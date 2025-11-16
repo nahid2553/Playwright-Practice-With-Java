@@ -11,7 +11,7 @@ public class LocatorAndAssertion {
             Browser browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false).setSlowMo(5000));
             Page page = browser.newPage();
             page.navigate("https://trytestingthis.netlify.app");
-            System.out.println(page.title());
+            System.out.println(page.title()); //printing title
             assertThat(page).hasTitle(Pattern.compile("Testing"));
             //add extra timeout//
 //            assertThat(page).hasTitle(Pattern.compile("Testing"), new PageAssertions.HasTitleOptions().setTimeout(1000));
@@ -19,7 +19,7 @@ public class LocatorAndAssertion {
             assertThat(contact).hasAttribute("href", "/contact");  //attribute which contain url and its value
             contact.click();  //click on element
             assertThat(page.getByRole(AriaRole.HEADING,new Page.GetByRoleOptions().setName("Your Website to practice Automation Testing"))).isVisible();
-
+            
 
         }
     }
