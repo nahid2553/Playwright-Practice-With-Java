@@ -18,8 +18,8 @@ public class LocatorAndAssertion {
     @BeforeAll
     static void launchBrowser() {
         playwright = Playwright.create();
-        browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false).setSlowMo(1000));
-      //  browser = playwright.chromium().launch();
+     //   browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false).setSlowMo(1000));
+        browser = playwright.chromium().launch();
     }
 
     @BeforeEach
@@ -53,7 +53,7 @@ public class LocatorAndAssertion {
     }
 
     @Test
-    void wikipedia() {
+    void facebook() {
         page.navigate("https://www.facebook.com/");
 
 //        1.Locate by text content
@@ -67,16 +67,22 @@ public class LocatorAndAssertion {
 //        Link with Text for button
         page.getByText("Log in").click();
 
-//        link text
-
-
 //        2.Locate by Test ID
 //        page.getByTestId("open-registration-form-button").click();
 
 //        3.Locate by placeholder
-//        4.Locate by Title
-//        5.Locate by ALT Text
-//        6.Locate by Label Text
+        page.getByPlaceholder("Email address or phone number").fill("nahid@gmail.com");
+        page.getByPlaceholder("Password").fill("nahid12345");
 
+//        4.Locate by Title
+        page.getByTitle("Sign up for Facebook");
+
+//        5.Locate by ALT Text
+        Locator altText = page.getByAltText("Facebook");
+        System.out.println(altText);
+
+//        6.Locate by Label Text
+        Locator title = page.getByTitle("Visit our contact uploading and non-users notice.");
+        System.out.println(title);
     }
 }
